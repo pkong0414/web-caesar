@@ -23,7 +23,7 @@ def build_page(text_content):
     rotation_label = "<label>Rotate by:</label>"
     rotation_input = "<input type= 'number' name='rotation'/>"
     message_label = "<label>Type a message:</label>"
-    text_message = "<textarea name= 'message'> + text_content + </textarea>"
+    text_message = "<textarea name= 'message'>" + text_content + "</textarea>"
     submit = "<input type = 'submit'/>"
     form = ("<form method= post>" + rotation_label +
         rotation_input + "<br>" + message_label +
@@ -41,7 +41,7 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         message = self.request.get("message")
-        rotation = int(self.request.get)
+        rotation = int(self.request.get("rotation"))
         encrypted_message = caesar.encrypt(message, rotation)
         escaped_message = cgi.escape(encrypted_message)
         content = build_page(escaped_message)
